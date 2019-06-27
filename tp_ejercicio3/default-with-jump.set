@@ -5,7 +5,7 @@
 		"I": [{"id": "op", "size": 6}, {"id": "rs", "size": 5}, {"id": "rt", "size": 5}, {"id": "imm", "size": 16}]
 	},
 	"instructions": {
-		"j":  {"type": "I", "args": ["offset"], "fields": {"op": 4, "rs": 0, "rt": 0, "imm": "#1", }},
+"srl":  {"type": "R", "args": ["reg", "reg", "int"], "fields": {"op": 0, "rs": "#2", "rt": 0, "rd": "#1", "shamt": "#3", "func": 0}, "desc": "$t1 = $t2 >> $t3"},
 		"nop":  {"type": "R", "fields": {"op": 0, "rs": 0, "rt": 0, "rd": 0, "shamt": 0, "func": 0}},
 		"add":  {"type": "R", "args": ["reg", "reg", "reg"], "fields": {"op": 0, "rs": "#2", "rt": "#3", "rd": "#1", "shamt": 0, "func": 32}, "desc": "$t1 = $t2 + $t3"},
 		"sub":  {"type": "R", "args": ["reg", "reg", "reg"], "fields": {"op": 0, "rs": "#2", "rt": "#3", "rd": "#1", "shamt": 0, "func": 34}, "desc": "$t1 = $t2 - $t3"},
@@ -42,6 +42,7 @@
 		"func_size": 6,
 		"control_size": 4,
 		"control": [
+			{"aluop": 2, "func": 0, "out": {"Operation": 13, "useShamt": 0}},
 			{"aluop": 0, "out": {"Operation": 2}},
 			{"aluop": 1, "out": {"Operation": 6}},
 			{"aluop": 2, "func": 32, "out": {"Operation": 2}},
@@ -57,7 +58,9 @@
 			"2": "add",
 			"6": "sub",
 			"7": "slt",
-			"12": "nor"
+			"12": "nor",
+			"13": "srl"
+
 		}
 	}
 }
